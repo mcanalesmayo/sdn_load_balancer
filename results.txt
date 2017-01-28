@@ -1,0 +1,34 @@
+Performing 100 pings for each client node (1..6) to the load balancer
+
+Round Robin
+
+Stats received: [{'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 101, 'rx_frame_err': 0, 'rx_bytes': 9842, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9842, 'rx_dropped': 0, 'tx_packets': 101, 'port_no': 3}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 105, 'rx_frame_err': 0, 'rx_bytes': 9954, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9954, 'rx_dropped': 0, 'tx_packets': 105, 'port_no': 9}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 101, 'rx_frame_err': 0, 'rx_bytes': 9842, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9842, 'rx_dropped': 0, 'tx_packets': 101, 'port_no': 1}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 103, 'rx_frame_err': 0, 'rx_bytes': 9926, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9926, 'rx_dropped': 0, 'tx_packets': 103, 'port_no': 10}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 101, 'rx_frame_err': 0, 'rx_bytes': 9842, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9842, 'rx_dropped': 0, 'tx_packets': 101, 'port_no': 4}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 105, 'rx_frame_err': 0, 'rx_bytes': 10010, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 10010, 'rx_dropped': 0, 'tx_packets': 105, 'port_no': 8}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 103, 'rx_frame_err': 0, 'rx_bytes': 9926, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9926, 'rx_dropped': 0, 'tx_packets': 103, 'port_no': 12}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 103, 'rx_frame_err': 0, 'rx_bytes': 9926, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9926, 'rx_dropped': 0, 'tx_packets': 103, 'port_no': 11}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 107, 'rx_frame_err': 0, 'rx_bytes': 10150, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 10150, 'rx_dropped': 0, 'tx_packets': 107, 'port_no': 7}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 101, 'rx_frame_err': 0, 'rx_bytes': 9842, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9842, 'rx_dropped': 0, 'tx_packets': 101, 'port_no': 5}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 101, 'rx_frame_err': 0, 'rx_bytes': 9842, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9842, 'rx_dropped': 0, 'tx_packets': 101, 'port_no': 6}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 101, 'rx_frame_err': 0, 'rx_bytes': 9842, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9842, 'rx_dropped': 0, 'tx_packets': 101, 'port_no': 2}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 0, 'rx_frame_err': 0, 'rx_bytes': 0, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 0, 'rx_dropped': 0, 'tx_packets': 0, 'port_no': 65534}]
+
+
+Random
+
+Stats received: [{'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 101, 'rx_frame_err': 0, 'rx_bytes': 9842, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9842, 'rx_dropped': 0, 'tx_packets': 101, 'port_no': 3}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 96, 'rx_frame_err': 0, 'rx_bytes': 8848, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 8848, 'rx_dropped': 0, 'tx_packets': 96, 'port_no': 9}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 101, 'rx_frame_err': 0, 'rx_bytes': 9842, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9842, 'rx_dropped': 0, 'tx_packets': 101, 'port_no': 1}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 110, 'rx_frame_err': 0, 'rx_bytes': 10332, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 10332, 'rx_dropped': 0, 'tx_packets': 110, 'port_no': 10}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 101, 'rx_frame_err': 0, 'rx_bytes': 9842, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9842, 'rx_dropped': 0, 'tx_packets': 101, 'port_no': 4}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 131, 'rx_frame_err': 0, 'rx_bytes': 12334, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 12334, 'rx_dropped': 0, 'tx_packets': 131, 'port_no': 8}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 84, 'rx_frame_err': 0, 'rx_bytes': 7952, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 7952, 'rx_dropped': 0, 'tx_packets': 84, 'port_no': 12}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 119, 'rx_frame_err': 0, 'rx_bytes': 11214, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 11214, 'rx_dropped': 0, 'tx_packets': 119, 'port_no': 11}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 109, 'rx_frame_err': 0, 'rx_bytes': 10178, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 10178, 'rx_dropped': 0, 'tx_packets': 109, 'port_no': 7}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 101, 'rx_frame_err': 0, 'rx_bytes': 9842, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9842, 'rx_dropped': 0, 'tx_packets': 101, 'port_no': 5}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 101, 'rx_frame_err': 0, 'rx_bytes': 9842, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9842, 'rx_dropped': 0, 'tx_packets': 101, 'port_no': 6}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 101, 'rx_frame_err': 0, 'rx_bytes': 9842, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 9842, 'rx_dropped': 0, 'tx_packets': 101, 'port_no': 2}
+ {'rx_over_err': 0, 'tx_dropped': 0, 'rx_packets': 0, 'rx_frame_err': 0, 'rx_bytes': 0, 'tx_errors': 0, 'rx_crc_err': 0, 'collisions': 0, 'rx_errors': 0, 'tx_bytes': 0, 'rx_dropped': 0, 'tx_packets': 0, 'port_no': 65534}]

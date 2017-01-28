@@ -8,6 +8,7 @@ from pox.lib.packet.ethernet import ethernet
 from pox.lib.packet.arp import arp
 from pox.lib.addresses import IPAddr, EthAddr
 import pox.openflow.libopenflow_01 as of
+from pox.openflow.of_json import *
 import random
 import threading
 
@@ -23,7 +24,7 @@ Scheduling methods (used to choose a server to handle the service request)
 """
 SCHED_RANDOM = 0
 SCHED_ROUNDROBIN = 1
-SCHED_METHOD = SCHED_ROUNDROBIN
+SCHED_METHOD = SCHED_RANDOM
 
 """
 Statistics request period, in seconds
@@ -35,6 +36,7 @@ class Host (object):
 		self.mac = mac
 		self.ip = ip
 		self.port = port
+		self.req_n = 0
 
 	def __str__ (self):
 		return "MAC: " + str(self.mac) + " | IP: " + str(self.ip) + " | Port:" + str(self.port)
@@ -58,7 +60,7 @@ Creates a list of hosts from 'start' to 'end'
 def fill_hosts_list (start, end):
 	L = {}
 	i = 0
-	for host in range(start, end):
+	for host in range(start, end + 1):
 		if host < 10:
 			mac_suffix = "0" + str(host)
 		else:
@@ -104,9 +106,9 @@ class stats_req_thread (threading.Thread):
 	def run (self):
 		while not self.stop_flag.wait(STATS_REQ_PERIOD):
 			msg = of.ofp_stats_request()
-			msg.type = of.OFPST_AGGREGATE
-			msg.body = of.ofp_aggregate_stats_request()
-			self.connection.send(msg)	
+			msg.type = of.OFPST_PORT
+			msg.body = of.ofp_port_stats_request()
+			self.connection.send(msg)
 
 class proxy_load_balancer (object):
 	def __init__ (self, connection):
@@ -124,8 +126,10 @@ class proxy_load_balancer (object):
 		# Listen to the connection
 		connection.addListeners(self)
 
-	def _handle_AggregateFlowStatsReceived (self, event):
-		log.info("Stats received: %s" % (event.stats.show()))
+	# AggregateFlowStats tables are deleted everytime a FlowMod is sent
+	# Alternative is PortStats
+	def _handle_PortStatsReceived (self, event):
+		log.info("Stats received: %s" % (str(flow_stats_to_list(event.stats))))
 
 	def _handle_PacketIn (self, event):
 		frame = event.parse()
@@ -247,6 +251,7 @@ class proxy_load_balancer (object):
 
 		# Choose server
 		chosen_server = choose_server()
+		chosen_server.req_n += 1
 		
 		# The path must be set from end to start of frame direction, i.e. firstly the server-to-client
 		# and then client-to-server, in order to avoid the frame being received by the server
