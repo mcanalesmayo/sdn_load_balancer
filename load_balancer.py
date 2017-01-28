@@ -9,6 +9,7 @@ from pox.lib.packet.arp import arp
 from pox.lib.addresses import IPAddr, EthAddr
 import pox.openflow.libopenflow_01 as of
 import random
+import threading
 
 log = core.getLogger()
 
@@ -23,6 +24,11 @@ Scheduling methods (used to choose a server to handle the service request)
 SCHED_RANDOM = 0
 SCHED_ROUNDROBIN = 1
 SCHED_METHOD = SCHED_ROUNDROBIN
+
+"""
+Statistics request period, in seconds
+"""
+STATS_REQ_PERIOD = 3
 
 class Host (object):
 	def __init__ (self, mac, ip, port):
@@ -85,12 +91,31 @@ Gets a host by its ip
 def get_host_by_ip (hosts_list, ip):
 	return next( (x for x in hosts_list.values() if str(x.ip) == str(ip)), None)
 
+class stats_req_thread (threading.Thread):
+	def __init__ (self, connection, stop_flag):
+		threading.Thread.__init__(self)
+
+		self.connection = connection
+		self.stop_flag = stop_flag
+
+	"""
+	Periodically asks the statistics to the switch, till stop flag is raised
+	"""
+	def run (self):
+		while not self.stop_flag.wait(STATS_REQ_PERIOD):
+			msg = of.ofp_stats_request()
+			msg.type = of.OFPST_AGGREGATE
+			msg.body = of.ofp_aggregate_stats_request()
+			self.connection.send(msg)	
+
 class proxy_load_balancer (object):
 	def __init__ (self, connection):
 		self.connection = connection
 
-		# MAC-Port association
-		self.mac_to_port = {}
+		# Timer should be global in order to be stopped when ConnectionDown event is raised
+		global stop_flag
+		stop_flag = threading.Event()
+		stats_req_thread(self.connection, stop_flag).start()
 
 		# If RR is the scheduling method, then choose a random server to start it
 		if SCHED_METHOD is SCHED_ROUNDROBIN:
@@ -99,12 +124,11 @@ class proxy_load_balancer (object):
 		# Listen to the connection
 		connection.addListeners(self)
 
+	def _handle_AggregateFlowStatsReceived (self, event):
+		log.info("Stats received: %s" % (event.stats.show()))
+
 	def _handle_PacketIn (self, event):
 		frame = event.parse()
-
-		# Save MAC-Port association
-		log.debug("Updating: MAC %s => Port %s" % (frame.src, event.port))
-		self.mac_to_port[frame.src] = event.port
 
 		# ARP request
 		if frame.type == frame.ARP_TYPE:
@@ -299,7 +323,16 @@ class load_balancer (object):
 	"""
 	def _handle_ConnectionUp (self, event):
 		log.debug("Switch connected" % ())
+		# Create load balancer
 		proxy_load_balancer(event.connection)
+
+	"""
+	Connection from switch closed
+	"""
+	def _handle_ConnectionDown (self, event):
+		log.debug("Switch disconnected" % ())
+		# Stop stats req timer
+		stop_flag.set()
 
 def launch ():
 	core.registerNew(load_balancer)
