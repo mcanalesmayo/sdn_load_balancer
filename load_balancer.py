@@ -1,6 +1,6 @@
-# author: Marcos Canales Mayo
-# email: marketes94@gmail.com
-# description: basic controller module to balance the load of a single switch
+# Author: Marcos Canales Mayo
+# Email: mcanalesmayo@gmail.com
+# Description: basic controller module to balance the load of a single switch
 
 from pox.core import core
 import pox.lib.packet as libpacket
